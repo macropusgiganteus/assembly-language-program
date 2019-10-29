@@ -1,3 +1,5 @@
+from Decimal_binary import decimal_to_binary
+
 
 def add(inst):
 

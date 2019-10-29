@@ -1,3 +1,6 @@
+from Decimal_binary import decimal_to_binary
+
+
 def lw(inst):
 
     return 'lw'
