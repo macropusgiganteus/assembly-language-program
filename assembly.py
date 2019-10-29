@@ -2,6 +2,7 @@ from instructionType.R_Type import *
 from instructionType.I_Type import *
 from instructionType.J_Type import *
 from instructionType.O_Type import *
+from instructionType.fill import fill
 from Decimal_binary import binary_to_decimal
 
 # core function
@@ -33,6 +34,8 @@ def assembly(inst):
         result = halt(instArray)
     elif instArray[1] == 'noop':
         result = noop(instArray)
+    elif instArray[1] == '.fill':
+        result = fill(instArray)
     else:
         result = 'Can not convert to machine language'
 
