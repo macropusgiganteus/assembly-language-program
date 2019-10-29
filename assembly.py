@@ -8,7 +8,7 @@ from Decimal_binary import binary_to_decimal
 # core function
 
 
-def assembly(inst):
+def assembly(inst, addr):
     instArray = inst.rstrip().split(' ')
     result = ''
     # R_Type
@@ -27,7 +27,7 @@ def assembly(inst):
 
     # J_Type
     elif instArray[1] == 'jalr':
-        result = jalr(instArray)
+        result = jalr(instArray, addr)
 
     # O_Type
     elif instArray[1] == 'halt':
@@ -40,3 +40,4 @@ def assembly(inst):
         result = 'Can not convert to machine language'
 
     print(binary_to_decimal(result))
+    print('\n')

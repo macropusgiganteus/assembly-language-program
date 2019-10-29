@@ -1,6 +1,8 @@
-
+bitA = '0000000000000000'
 
 # convert decimal to binary
+
+
 def decimal_to_binary(decimal):
     binary = ''
     divide = decimal
@@ -50,6 +52,7 @@ def decimal_to_binary(decimal):
     while len(binary) != 16:
         binary = binary + '0'
 
+    binary += bitA
     return binary[::-1]
 
 
