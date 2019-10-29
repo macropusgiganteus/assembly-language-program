@@ -8,7 +8,7 @@ from Decimal_binary import binary_to_decimal
 
 
 def assembly(inst):
-    instArray = inst.split(' ')
+    instArray = inst.rstrip().split(' ')
     result = ''
     # R_Type
     if instArray[1] == 'add':
@@ -35,4 +35,5 @@ def assembly(inst):
         result = noop(instArray)
     else:
         result = 'Can not convert to machine language'
-    print(binary_to_decimal((result)))
+
+    print(binary_to_decimal(result))
