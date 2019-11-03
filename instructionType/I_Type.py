@@ -8,12 +8,8 @@ for x in f:
     y = x.rstrip().split(' ')
     labelAddr.append(y[0])
 
-
-
-
-def lw(inst):
-    
-    bitA = '010'#opcode 24:22
+def i_type(inst,opcode):
+    bitA = opcode #opcode 24:22
     bitB = '' #rs 21:19
     bitC = '' #rt 18:16
     bitD = '' #offset 15:0
@@ -32,11 +28,12 @@ def lw(inst):
     return result
 
 
+def lw(inst):
+    return i_type(inst,'010')
+
 def sw(inst):
-    print(inst)
-    return 'sw'
+   return i_type(inst,'011')
 
 
 def beq(inst):
-    print(inst)
-    return 'beq'
+    return i_type(inst,'100')
