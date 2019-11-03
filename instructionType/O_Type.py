@@ -7,12 +7,14 @@ bitC = '0000000000000000000000'
 
 
 def halt(inst):
+    print(inst)
     bitB = '110'
     print(bitA+' '+bitB+' '+bitC)
     return bitA+bitB+bitC
 
 
 def noop(inst):
+    print(inst)
     bitB = '111'
     print(bitA+' '+bitB+' '+bitC)
     return bitA+bitB+bitC

@@ -1,16 +1,42 @@
 from Decimal_binary import decimal_to_binary
 
 
-def lw(inst):
+labelAddr = []
+f = open("instruction.txt", "r")
 
-    return 'lw'
+for x in f:
+    y = x.rstrip().split(' ')
+    labelAddr.append(y[0])
+
+
+
+
+def lw(inst):
+    
+    bitA = '010'#opcode 24:22
+    bitB = '' #rs 21:19
+    bitC = '' #rt 18:16
+    bitD = '' #offset 15:0
+    bit0 = '0000000'
+    offset = 0
+    rs = decimal_to_binary(int(inst[2]))
+    bitB = rs[29:32]
+    rt = decimal_to_binary(int(inst[3]))
+    bitC = rt[29:32]
+    if labelAddr.__contains__(inst[4]):
+        offset = decimal_to_binary(labelAddr.index(inst[4]))
+    else:
+        offset = decimal_to_binary(int(inst[4]))
+    bitD = offset[16:32]
+    result = bit0+bitA+bitB+bitC+bitD
+    return result
 
 
 def sw(inst):
-
+    print(inst)
     return 'sw'
 
 
 def beq(inst):
-
+    print(inst)
     return 'beq'
