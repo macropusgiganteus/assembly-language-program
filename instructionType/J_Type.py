@@ -17,8 +17,10 @@ bitE = '0000000000000000'
 
 
 def jalr(inst, addr):
+    print(inst)
+    print(addr)
     rd = decimal_to_binary(addr+1)
-
+    print(rd)
     bitC = rd[len(rd)-3:len(rd)]
 
     rs = decimal_to_binary(int(inst[3]))
