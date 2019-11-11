@@ -23,7 +23,7 @@ def assembly(inst, addr):
     elif instArray[1] == 'sw':
         result = sw(instArray)
     elif instArray[1] == 'beq':
-        result = beq(instArray)
+        result = beq(instArray, addr)
 
     # J_Type
     elif instArray[1] == 'jalr':
@@ -38,6 +38,4 @@ def assembly(inst, addr):
         result = fill(instArray)
     else:
         result = 'Can not convert to machine language'
-
-    print(binary_to_decimal(result))
-    print('\n')
+    print('memory[' + str(addr) + '] = ' + str(binary_to_decimal(result)))

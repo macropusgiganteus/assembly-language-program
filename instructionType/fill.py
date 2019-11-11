@@ -17,5 +17,4 @@ def fill(inst):
         bitB = decimal_to_binary(labelAddr.index(inst[2]))
     else:
         bitB = decimal_to_binary(int(inst[2]))
-    print(bitB)
     return bitB

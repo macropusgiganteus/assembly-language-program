@@ -47,6 +47,8 @@ def decimal_to_binary(decimal):
                 else:
                     addConvertedBits += convertedBits[n]
                 n -= 1
+        if(decimal % 2 == 1):
+            return addConvertedBits
         return addConvertedBits[::-1]
 
     while len(binary) != 16:
