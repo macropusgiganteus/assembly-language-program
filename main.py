@@ -1,6 +1,6 @@
 
 from assembly import assembly
-
+from simulator import simulator
 
 # assembly instruction
 instruction = []
@@ -18,10 +18,7 @@ for y in t:
 
 print('\n instruction file \n')
 # main
-for x in instruction:
-    assembly(x, a)
-    a += 1
-a = 0
+simulator(instruction)
 
 print('\ntest file jalr \n')
 

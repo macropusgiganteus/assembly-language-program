@@ -39,3 +39,4 @@ def assembly(inst, addr):
     else:
         result = 'Can not convert to machine language'
     print('memory[' + str(addr) + '] = ' + str(binary_to_decimal(result)))
+    return result
