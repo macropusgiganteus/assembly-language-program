@@ -9,7 +9,6 @@ def simulator(inst):
     a = 0
     mem = []
     reg = [0, 0, 0, 0, 0, 0, 0, 0]
-    regNum = 0
     regA = 0
     regB = 0
     offSet = 0
@@ -27,18 +26,7 @@ def simulator(inst):
     # print simulator
     pc = 0
     while(halt == 0):
-        print("@@@")
-        print("state:")
-        print("        pc "+str(pc))
-        print("        memory:")
-        for i in mem:
-            print(
-                "                 mem[ "+str(mem.index(i))+" ] " + str(binary_to_decimal(i)))
-        print("        registors:")
-        for j in reg:
-            print("                 reg[ "+str(regNum)+" ] " + str(j))
-            regNum += 1
-        regNum = 0
+        printState(mem, reg, pc)
         instMem = mem[pc]
         # I-type
         # lw
@@ -55,6 +43,7 @@ def simulator(inst):
             if(reg[regA] == reg[regB]):
                 pc = pc + 1 + offSet
                 count += 1
+                print("end state")
                 continue
         # sw
         # elif(instMem[7:10] == '011'):
@@ -111,3 +100,19 @@ def nand(A, B):
             ResultNot += '0'
         bit += 1
     return binary_to_decimal(ResultNot)
+
+
+# printState
+def printState(memory, register, pc):
+    regNum = 0
+    print("\n@@@")
+    print("state:")
+    print("        pc "+str(pc))
+    print("        memory:")
+    for i in memory:
+        print(
+            "                 mem[ "+str(memory.index(i))+" ] " + str(binary_to_decimal(i)))
+    print("        registors:")
+    for j in register:
+        print("                 reg[ "+str(regNum)+" ] " + str(j))
+        regNum += 1
