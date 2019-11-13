@@ -22,13 +22,13 @@ destReg = ''
 def add(inst):
     opcode = '000'
 
-    rs = decimal_to_binary(int(inst[3])-1)
+    rs = decimal_to_binary(int(inst[2]))
     regA = rs[len(rs)-3:len(rs)]
 
     rt = decimal_to_binary(int(inst[3]))
     regB = rt[len(rt)-3:len(rt)]
 
-    rd = decimal_to_binary(int(inst[3])-1)
+    rd = decimal_to_binary(int(inst[4]))
     destReg = rd[len(rd)-3:len(rd)]
     return bits31_25 + opcode + regA + regB + bits15_3 + destReg
 
@@ -36,12 +36,12 @@ def add(inst):
 def nand(inst):
     opcode = '001'
 
-    rs = decimal_to_binary(int(inst[3])-1)
+    rs = decimal_to_binary(int(inst[2]))
     resA = rs[len(rs)-3:len(rs)]
 
     rt = decimal_to_binary(int(inst[3]))
     regB = rt[len(rt)-3:len(rt)]
 
-    rd = decimal_to_binary(int(inst[3]))
+    rd = decimal_to_binary(int(inst[4]))
     destReg = rd[len(rd)-3:len(rd)]
     return bits31_25 + opcode + regA + regB + bits15_3 + destReg

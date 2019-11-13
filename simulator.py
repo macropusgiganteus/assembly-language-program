@@ -35,6 +35,7 @@ def simulator(inst):
             regB = binary_to_decimal(instMem[13:16])
             offSet = binary_to_decimal(instMem[16:32])
             reg[regB] = binary_to_decimal(mem[reg[regA] + offSet])
+
         # beq
         elif(instMem[7:10] == '100'):
             regA = binary_to_decimal(instMem[10:13])
@@ -46,7 +47,11 @@ def simulator(inst):
                 print("end state")
                 continue
         # sw
-        # elif(instMem[7:10] == '011'):
+        elif(instMem[7:10] == '011'):
+            regA = binary_to_decimal(instMem[10:13])
+            regB = binary_to_decimal(instMem[13:16])
+            offSet = binary_to_decimal(instMem[16:32])
+            mem[reg[regA] + offSet] = decimal_to_binary(reg[regB])
 
         # R-type
         # add
@@ -56,11 +61,23 @@ def simulator(inst):
             destReg = binary_to_decimal(instMem[29:32])
             reg[destReg] = reg[regA] + reg[regB]
         # nand
-        # elif(instMem[7:10] == '001'):
+        elif(instMem[7:10] == '001'):
+            nand(reg[regA],reg[regB])
 
         # J-type
         # jalr
-       # elif(instMem[7:10] == '101'):
+        elif(instMem[7:10] == '101'):
+            regA = binary_to_decimal(instMem[10:13])
+            regB = binary_to_decimal(instMem[13:16])
+            if(regA == regB):
+                reg[regB] = pc + 1
+            else:
+                reg[regB] = pc + 1
+                pc = reg[regA]
+                count += 1
+                continue
+
+
 
         # O-type
         elif(instMem[7:10] == '110'):
