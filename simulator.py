@@ -2,7 +2,7 @@ from assembly import assembly
 from Decimal_binary import *
 
 
-def simulator(inst):
+def simulator(inst, path):
     print("Example Run of Simulator")
 
     # print instruinction
@@ -17,7 +17,7 @@ def simulator(inst):
     count = 0
 
     for x in inst:
-        mem.append(assembly(x, a))
+        mem.append(assembly(x, a, path))
         a += 1
     a = 0
     print(mem)
@@ -62,7 +62,7 @@ def simulator(inst):
             reg[destReg] = reg[regA] + reg[regB]
         # nand
         elif(instMem[7:10] == '001'):
-            nand(reg[regA],reg[regB])
+            nand(reg[regA], reg[regB])
 
         # J-type
         # jalr
@@ -77,8 +77,6 @@ def simulator(inst):
                 count += 1
                 continue
 
-
-
         # O-type
         elif(instMem[7:10] == '110'):
             halt = 1
@@ -91,6 +89,7 @@ def simulator(inst):
             print("machine halted")
             print("total of " + str(count) + " instructions executed")
             print("final state of machine:")
+    printState(mem, reg, pc-1)
 
 
 # nand(int A, int B) return string

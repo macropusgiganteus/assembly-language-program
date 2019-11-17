@@ -7,10 +7,11 @@ input = input("Enter your file name: ")+".txt"
 # assembly instruction
 instruction = []
 
+path = 'program_instructions/'+input
 
-t = open(input, "r")
+t = open(path, "r")
 for y in t:
     instruction.append(y)
 
 # main
-simulator(instruction)
+simulator(instruction, path)
