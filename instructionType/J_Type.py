@@ -24,5 +24,4 @@ def jalr(inst, addr):
     bitB = rs[len(rs)-3:len(rs)]
 
     result = bitD+bitA+bitB+bitC+bitE
-    print(bitD+' '+bitA+' '+bitB+' '+bitC+' '+bitE)
     return result
