@@ -1,15 +1,17 @@
 from Decimal_binary import decimal_to_binary
 
 
-labelAddr = []
-f = open("instruction.txt", "r")
+def label(path):
+    labelAddr = []
+    f = open(path, "r")
+    for x in f:
+        y = x.rstrip().split(' ')
+        labelAddr.append(y[0])
+    return labelAddr
 
-for x in f:
-    y = x.rstrip().split(' ')
-    labelAddr.append(y[0])
 
-
-def i_type(inst, opcode):
+def i_type(inst, opcode, path):
+    labelAddr = label(path)
     bitA = opcode  # opcode 24:22
     bitB = ''  # rs 21:19
     bitC = ''  # rt 18:16
@@ -30,15 +32,16 @@ def i_type(inst, opcode):
     return result
 
 
-def lw(inst):
-    return i_type(inst, '010')
+def lw(inst, path):
+    return i_type(inst, '010', path)
 
 
-def sw(inst):
-    return i_type(inst, '011')
+def sw(inst, path):
+    return i_type(inst, '011', path)
 
 
-def beq(inst,  addr):
+def beq(inst,  addr, path):
+    labelAddr = label(path)
     opcode = '100'
     bitA = opcode  # opcode 24:22
     bitB = ''  # rs 21:19

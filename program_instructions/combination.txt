@@ -1,0 +1,118 @@
+ lw 0 1 inputN              # $1 = memory[inputN]
+ lw 0 2 inputR              # $2 = memory[inputR]
+combi beq 0 2 return1       # if r == 0 goto return1
+ beq 1 2 return1            # if n == r goto return1
+ noop #------------------------( if r!=0 and n != r )---------------------------------------------------------------------
+ lw 0 6 pos1                # $6 = 1 (temp)
+ sw 5 7 stack               # save return addr on stack -> memory[stack pointer + @stack]
+ add 5 6 5                  # increment stack pointer ($5) by 1
+ sw 5 1 stack               # save $1 on stack (n)
+ add 5 6 5                  # increment stack pointer ($5) by 1
+ sw 5 2 stack               # save $2 on stack (r)
+ add 5 6 5                  # increment stack pointer ($5) by 1   
+ lw 0 6 neg1                # $6 = -1 (temp)
+ sw 0 5 stack               # save current sp
+ add 6 5 5                  # sp = sp-1
+ lw 5 2 stack               # r = mem[sp] (r)
+ add 6 5 5                  # sp = sp-1
+ lw 5 1 stack               # n = mem[sp] (n)
+ add 1 6 1                  # decrement $1 (n) by 1 (n = n-1)
+ lw 0 6 combiAdr            # prepare to call subCombi. $4 = subAdr
+ jalr 6 7                   # call subCombi; $7 = return addr; $3 = anwser -----------------------------------------------
+ noop #------------------------( return1 )--------------------------------------------------------------------------------
+ add 4 3 4                  # add return value of combi(n-1,r) to $4 (local variable)
+ lw 0 5 stack               # restore sp
+  lw 0 6 neg1               # $6 = -1 (temp)
+ sw 0 5 stack               # save current sp
+ add 6 5 5                  # sp = sp-1
+ lw 5 2 stack               # r = mem[sp] (r)
+ add 6 5 5                  # sp = sp-1
+ lw 5 1 stack               # n = mem[sp] (n)
+ add 1 6 1                  # decrement $1 (n) by 1 (n = n-1)
+ add 2 6 2                  # decrement $2 (r) by 1 (r = r-1)
+ lw 0 6 combiAdr            # prepare to call subCombi. $4 = subAdr
+ jalr 6 7                   # call subCombi; $7 = return addr; $3 = anwser -----------------------------------------------
+ noop #------------------------( return2 )--------------------------------------------------------------------------------
+ add 4 3 4                  # add return value of combi(n-1,r-1) to $4 (local variable)
+return add 0 4 3            # return = combi(n-1,r) + combi(n-1,r-1)
+ beq 0 5 exit               # if sp == 0 -> exit
+ jalr 7 6                   # else -> return function
+return1 lw 0 3 pos1         # answer ($3) = 1
+ beq 0 5 exit               # if sp == 0 -> exit
+ jalr 7 6                   # else -> return function
+exit halt                   # exit
+pos1 .fill 1
+neg1 .fill -1
+neg2 .fill -2
+combiAdr .fill combi
+inputN .fill 2
+inputR .fill 1
+stack .fill 0               #stack --------------------------------------------------------------------------------------
+ .fill 0                    #inputN         for recursive 1
+ .fill 0                    #inputR         for recursive 1
+ .fill 0                    #return result  for recursive 1
+ .fill 0                    #return addr    for recursive 1
+ .fill 0                    # 2
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 3
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 4
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 5
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 6
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 7
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 8
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 9
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 10
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 11
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 12
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 13
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 14
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 15
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 16
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0                    # 17
+ .fill 0
+ .fill 0
+ .fill 0

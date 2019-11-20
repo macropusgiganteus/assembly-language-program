@@ -8,7 +8,7 @@ from Decimal_binary import binary_to_decimal
 # core function
 
 
-def assembly(inst, addr):
+def assembly(inst, addr, path):
     instArray = inst.rstrip().split(' ')
     result = ''
     # R_Type
@@ -19,11 +19,11 @@ def assembly(inst, addr):
 
     # I_Type
     elif instArray[1] == 'lw':
-        result = lw(instArray)
+        result = lw(instArray, path)
     elif instArray[1] == 'sw':
-        result = sw(instArray)
+        result = sw(instArray, path)
     elif instArray[1] == 'beq':
-        result = beq(instArray, addr)
+        result = beq(instArray, addr, path)
 
     # J_Type
     elif instArray[1] == 'jalr':
@@ -35,8 +35,7 @@ def assembly(inst, addr):
     elif instArray[1] == 'noop':
         result = noop(instArray)
     elif instArray[1] == '.fill':
-        result = fill(instArray)
+        result = fill(instArray, path)
     else:
         result = 'Can not convert to machine language'
-    print('memory[' + str(addr) + '] = ' + str(binary_to_decimal(result)))
     return result
