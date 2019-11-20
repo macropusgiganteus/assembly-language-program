@@ -1,8 +1,9 @@
 from assembly import assembly
 from Decimal_binary import *
 
-
-output = 'program_outputs/output.txt'
+n = 1
+output = 'program_outputs/output' + str(n)+'.txt'
+outputreg = 'program_outputs/outputreg' + str(n)+'.txt'
 
 
 def simulator(inst, path):
@@ -82,7 +83,8 @@ def simulator(inst, path):
 
         pc += 1
         count += 1
-        print('executed PC:' + str(pc-1))
+        print('executed PC:' + str(pc-1)+'  ' +
+              str(count)+' instructions executed')
         print("end state", file=open(output, "a"))
         if(halt == 1):
             print("machine halted", file=open(output, "a"))
@@ -129,11 +131,18 @@ def printState(memory, register, pc):
     print("        pc "+str(pc), file=open(output, "a"))
     print("        memory:", file=open(output, "a"))
     for i in memory:
-        print(
-            "                 mem[ "+str(indexaddr)+" ] " + str(binary_to_decimal(i)), file=open(output, "a"))
+        if(indexaddr >= 49):
+            print(
+                "                 mem[ "+str(indexaddr)+" ] " + str(binary_to_decimal(i)), file=open(output, "a"))
         indexaddr += 1
     print("        registors:", file=open(output, "a"))
     for j in register:
         print("                 reg[ "+str(regNum) +
               " ] " + str(j), file=open(output, "a"))
+        regNum += 1
+    regNum = 0
+    print("\n        pc "+str(pc), file=open(outputreg, "a"))
+    for j in register:
+        print("                 reg[ "+str(regNum) +
+              " ] " + str(j), file=open(outputreg, "a"))
         regNum += 1
