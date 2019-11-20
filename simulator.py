@@ -9,7 +9,7 @@ outputreg = 'program_outputs/outputreg' + str(n)+'.txt'
 def simulator(inst, path):
     print("Example Run of Simulator", file=open(output, "a"))
 
-    # print instruinction
+    # print instruction
     a = 0
     mem = []
     reg = [0, 0, 0, 0, 0, 0, 0, 0]

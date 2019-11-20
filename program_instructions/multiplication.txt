@@ -1,0 +1,22 @@
+multi lw 0 2 inputC # $2 = memory[inputC] as multicand
+ lw 0 3 inputP      # $3 = memory[inputP] as multiplier
+ lw 0 4 pos1        # $4 = 1 temporary control
+ lw 0 6 neg1        # $6 = -1 temporary counter
+ lw 0 7 pos15       # $7 = 15 constant
+loop nand 3 4 5     # keep nand value between mplier and temp into $5
+ nand 5 5 5         # change nand-gate to and-gate
+ beq 0 5 shift      # if value from $5 is equal 0 then go to shift
+ add 2 1 1          # else add mplier to product  
+shift add 2 2 2     # shift left mcand by adding mcand
+ add 4 4 4          # shift left temp by adding temp
+ add 6 7 7          # $7 -= 1 
+ beq 0 7 done       # is $7 == 0? if false go to loop
+ beq 0 0 loop       #jump to loop
+ noop
+done halt
+pos1 .fill 1
+pos15 .fill 15
+neg1 .fill -1
+inputC .fill 5      # input multicand = 5
+inputP .fill 7      # input multiplier = 7
+stack .fill 0       # beginning of stack (value is irrelevent)
