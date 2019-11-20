@@ -37,7 +37,7 @@ def nand(inst):
     opcode = '001'
 
     rs = decimal_to_binary(int(inst[2]))
-    resA = rs[len(rs)-3:len(rs)]
+    regA = rs[len(rs)-3:len(rs)]
 
     rt = decimal_to_binary(int(inst[3]))
     regB = rt[len(rt)-3:len(rt)]
