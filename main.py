@@ -24,8 +24,9 @@ for y in d:
 
 print('\n instruction file \n')
 # main
-#simulator(instruction)
-simulator(test1)
+simulator(instruction)
+
+#simulator(test1)
 
 print('\ntest file jalr \n')
 
