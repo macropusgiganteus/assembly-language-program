@@ -94,9 +94,6 @@ def simulator(inst, path):
             print("total of " + str(count) + " instructions executed",
                   file=open(output, "a"))
             print("final state of machine:", file=open(output, "a"))
-            print('n: '+str(reg[1]))
-            print('r: '+str(reg[2]))
-            print('result : '+str(reg[3]))
     printState(mem, reg, pc-1)
 
 
