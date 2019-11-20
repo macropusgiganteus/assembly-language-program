@@ -14,4 +14,6 @@ for y in t:
     instruction.append(y)
 
 # main
+
 simulator(instruction, path)
+

@@ -1,11 +1,15 @@
 from assembly import assembly
 from Decimal_binary import *
 
+n = 1
+output = 'program_outputs/output' + str(n)+'.txt'
+outputreg = 'program_outputs/outputreg' + str(n)+'.txt'
+
 
 def simulator(inst, path):
-    print("Example Run of Simulator")
+    print("Example Run of Simulator", file=open(output, "a"))
 
-    # print instruinction
+    # print instruction
     a = 0
     mem = []
     reg = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -15,14 +19,10 @@ def simulator(inst, path):
     destReg = 0
     halt = 0
     count = 0
-
     for x in inst:
         mem.append(assembly(x, a, path))
         a += 1
     a = 0
-    print(mem)
-    print(reg)
-
     # print simulator
     pc = 0
     while(halt == 0):
@@ -44,7 +44,7 @@ def simulator(inst, path):
             if(reg[regA] == reg[regB]):
                 pc = pc + 1 + offSet
                 count += 1
-                print("end state")
+                print("end state", file=open(output, "a"))
                 continue
         # sw
         elif(instMem[7:10] == '011'):
@@ -83,12 +83,17 @@ def simulator(inst, path):
 
         pc += 1
         count += 1
-
-        print("end state")
+        print('executed PC:' + str(pc-1)+'  ' +
+              str(count)+' instructions executed')
+        print("end state", file=open(output, "a"))
         if(halt == 1):
-            print("machine halted")
-            print("total of " + str(count) + " instructions executed")
-            print("final state of machine:")
+            print("machine halted", file=open(output, "a"))
+            print("total of " + str(count) + " instructions executed",
+                  file=open(output, "a"))
+            print("final state of machine:", file=open(output, "a"))
+            print('n: '+str(reg[1]))
+            print('r: '+str(reg[2]))
+            print('result : '+str(reg[3]))
     printState(mem, reg, pc-1)
 
 
@@ -106,7 +111,6 @@ def nand(A, B):
         else:
             binaryResult += '0'
         bit += 1
-    print(binaryResult)
     # not(Result)
     bit = 0
     while(bit < len(binaryA)):
@@ -121,14 +125,24 @@ def nand(A, B):
 # printState
 def printState(memory, register, pc):
     regNum = 0
-    print("\n@@@")
-    print("state:")
-    print("        pc "+str(pc))
-    print("        memory:")
+    indexaddr = 0
+    print("\n@@@", file=open(output, "a"))
+    print("state:", file=open(output, "a"))
+    print("        pc "+str(pc), file=open(output, "a"))
+    print("        memory:", file=open(output, "a"))
     for i in memory:
-        print(
-            "                 mem[ "+str(memory.index(i))+" ] " + str(binary_to_decimal(i)))
-    print("        registors:")
+        if(indexaddr >= 49):
+            print(
+                "                 mem[ "+str(indexaddr)+" ] " + str(binary_to_decimal(i)), file=open(output, "a"))
+        indexaddr += 1
+    print("        registors:", file=open(output, "a"))
     for j in register:
-        print("                 reg[ "+str(regNum)+" ] " + str(j))
+        print("                 reg[ "+str(regNum) +
+              " ] " + str(j), file=open(output, "a"))
+        regNum += 1
+    regNum = 0
+    print("\n        pc "+str(pc), file=open(outputreg, "a"))
+    for j in register:
+        print("                 reg[ "+str(regNum) +
+              " ] " + str(j), file=open(outputreg, "a"))
         regNum += 1

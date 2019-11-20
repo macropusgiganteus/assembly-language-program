@@ -1,0 +1,204 @@
+ lw 0 1 inputN      
+ lw 0 2 inputR
+combi lw 0 3 pos1       # return = 1 -------------------------combi
+ beq 0 2 return         # if r == 0 then return
+ beq 1 2 return         # if n == r then return
+ lw 0 6 pos1            # else $6 = 1
+ add 5 6 5              # sp += 1
+ sw 5 7 stack           # save return address               >>>>>>>
+ add 5 6 5              # sp += 1
+ sw 5 1 stack           # save n                            >>>>>>>
+ add 5 6 5              # sp += 1
+ sw 5 2 stack           # save r                            >>>>>>>
+ lw 0 6 neg1            # $6 = -1
+ add 6 1 1              # n = n-1
+ lw 0 6 combiAddr       # $6 = combiAddr
+ jalr 6 7               # call combination(n-1,r)           >FUNCTION
+ lw 0 6 neg1            # $6 = -1
+ lw 5 4 stack           # get return from function -> $4
+ add 5 6 5              # sp -= 1
+ sw 0 5 stack           # save sp
+ lw 5 2 stack           # load r
+ add 5 6 5              # sp -= 1
+ lw 5 1 stack           # load n
+ add 6 1 1              # n = n-1
+ add 6 2 2              # r = r-1
+ lw 0 5 stack           # restore sp
+ lw 0 6 combiAddr       # $6 = combiAddr
+ jalr 6 7               # call combination(n-1,r-1)         >FUNCTION
+ lw 0 6 neg1            # $6 = -1
+ lw 5 3 stack           # get return from fuction -> $3
+ add 6 5 5              # sp -= 1
+ add 4 3 3              # return = combination(n-1,r) + combination(n-1,r-1)
+ lw 5 2 stack           # restore n r 
+ add 6 5 5              # sp -= 1
+ lw 5 1 stack           # restore n
+ add 6 5 5              # sp -= 1
+ lw 5 7 stack           # restore return address
+ add 6 5 5              # sp -= 1
+return beq 0 5 exit     # if sp = 0 exit------------------------return
+ lw 0 6 pos1            # $6 = 1
+ add 5 6 5              # sp += 1
+ sw 5 3 stack           # save return to stack
+ jalr 7 6               # return
+exit halt               # exit----------------------------------exit
+inputN .fill 5
+inputR .fill 3
+pos1 .fill 1
+neg1 .fill -1
+combiAddr .fill combi
+stack .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
