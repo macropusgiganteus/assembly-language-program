@@ -1,7 +1,7 @@
 from assembly import assembly
 from Decimal_binary import *
 
-n = 1
+n = 2
 output = 'program_outputs/output' + str(n)+'.txt'
 outputreg = 'program_outputs/outputreg' + str(n)+'.txt'
 
@@ -62,7 +62,10 @@ def simulator(inst, path):
             reg[destReg] = reg[regA] + reg[regB]
         # nand
         elif(instMem[7:10] == '001'):
-            nand(reg[regA], reg[regB])
+            regA = binary_to_decimal(instMem[10:13])
+            regB = binary_to_decimal(instMem[13:16])
+            destReg = binary_to_decimal(instMem[29:32])
+            reg[destReg] = nand(reg[regA], reg[regB])
 
         # J-type
         # jalr
