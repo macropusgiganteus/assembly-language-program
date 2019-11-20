@@ -1,7 +1,8 @@
 from assembly import assembly
 from Decimal_binary import *
 
-n = 2
+
+n = 3
 output = 'program_outputs/output' + str(n)+'.txt'
 outputreg = 'program_outputs/outputreg' + str(n)+'.txt'
 
