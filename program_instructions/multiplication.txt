@@ -1,5 +1,5 @@
-multi lw 0 2 inputC # $2 = memory[inputC] as multicand
- lw 0 3 inputP      # $3 = memory[inputP] as multiplier
+multi lw 0 2 mcand # $2 = memory[inputC] as multicand
+ lw 0 3 mplier      # $3 = memory[inputP] as multiplier
  lw 0 4 pos1        # $4 = 1 temporary control
  lw 0 6 neg1        # $6 = -1 temporary counter
  lw 0 7 pos15       # $7 = 15 constant
@@ -17,6 +17,6 @@ done halt
 pos1 .fill 1
 pos15 .fill 15
 neg1 .fill -1
-inputC .fill 5      # input multicand = 5
-inputP .fill 7      # input multiplier = 7
+mcand .fill 32766      # input multicand = 5
+mplier .fill 10383      # input multiplier = 7
 stack .fill 0       # beginning of stack (value is irrelevent)
