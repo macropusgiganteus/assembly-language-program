@@ -1,8 +1,0 @@
- .fill 5
- .fill 6
- .fill 2
- lw 0 1 1
- jalr 1 4
- lw 0 2 2
- add 1 2 3
- sw 0 3 1

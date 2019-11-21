@@ -8,4 +8,5 @@
  lw 0 4 1
  slt 0 2 3
 eiei .fill 0
+eiei .fill 2
  halt

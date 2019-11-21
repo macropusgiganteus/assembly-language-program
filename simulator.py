@@ -7,14 +7,13 @@ instruction = []
 
 path = 'program_instructions/'+input
 
-n = 2
 
 t = open(path, "r")
 for y in t:
     instruction.append(y)
 
-output = 'program_outputs/simulator' + str(n)+'.txt'
-outputreg = 'program_outputs/simulator_register' + str(n) + '.txt'
+output = 'program_outputs/simulator_' + input +'.txt'
+outputreg = 'program_outputs/simulator_register_' + input + '.txt'
 
 
 def simulator(inst, path):
@@ -145,8 +144,7 @@ def printState(memory, register, pc):
     print("        pc "+str(pc), file=open(output, "a"))
     print("        memory:", file=open(output, "a"))
     for i in memory:
-        if(indexaddr >= 49):
-            print(
+        print(
                 "                 mem[ "+str(indexaddr)+" ] " + str(binary_to_decimal(i)), file=open(output, "a"))
         indexaddr += 1
     print("        registors:", file=open(output, "a"))

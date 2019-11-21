@@ -14,7 +14,7 @@ for y in t:
 
 
 def assembler(instructions, pathF):
-    output = 'assembler' + '.txt'
+    output = 'program_outputs/assembler_' + input + '.txt'
     Addr = 0
     for x in instructions:
         print(assembly(x, Addr, pathF), file=open(output, "a"))
