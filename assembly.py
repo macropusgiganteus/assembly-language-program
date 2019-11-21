@@ -5,10 +5,10 @@ from instructionType.O_Type import *
 from instructionType.fill import fill
 from Decimal_binary import binary_to_decimal
 
+
 # core function
-
-
 def assembly(inst, addr, path):
+
     instArray = inst.rstrip().split(' ')
     result = ''
     # R_Type
@@ -37,5 +37,6 @@ def assembly(inst, addr, path):
     elif instArray[1] == '.fill':
         result = fill(instArray, path)
     else:
-        result = 'Can not convert to machine language'
+        print('Error: no opcode found')
+        exit(1)
     return result

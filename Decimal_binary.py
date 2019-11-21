@@ -50,7 +50,9 @@ def decimal_to_binary(decimal):
         if(decimal % 2 == 1):
             return addConvertedBits
         return addConvertedBits[::-1]
-
+    if(len(binary) > 16):
+        print('Error: offset field is over 16 bits')
+        exit(1)
     while len(binary) != 16:
         binary = binary + '0'
 

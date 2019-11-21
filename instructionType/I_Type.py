@@ -1,13 +1,5 @@
 from Decimal_binary import decimal_to_binary
-
-
-def label(path):
-    labelAddr = []
-    f = open(path, "r")
-    for x in f:
-        y = x.rstrip().split(' ')
-        labelAddr.append(y[0])
-    return labelAddr
+from label import label
 
 
 def i_type(inst, opcode, path):
@@ -26,7 +18,11 @@ def i_type(inst, opcode, path):
     if labelAddr.__contains__(inst[4]):
         offset = decimal_to_binary(labelAddr.index(inst[4]))
     else:
-        offset = decimal_to_binary(int(inst[4]))
+        try:
+            offset = decimal_to_binary(int(inst[4]))
+        except Exception as e:
+            print("Error: label not found")
+            exit(1)
     bitD = offset[16:32]
     result = bit0+bitA+bitB+bitC+bitD
     return result
@@ -60,7 +56,11 @@ def beq(inst,  addr, path):
         else:
             offset = decimal_to_binary(labelAddr.index(inst[4]) - addr - 1)
     else:
-        offset = decimal_to_binary(int(inst[4]))
+        try:
+            offset = decimal_to_binary(int(inst[4]))
+        except Exception as e:
+            print("Error: label not found")
+            exit(1)
     bitD = offset[16:32]
     result = bit0+bitA+bitB+bitC+bitD
     return result

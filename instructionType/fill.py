@@ -1,5 +1,5 @@
 from Decimal_binary import decimal_to_binary
-
+from label import label
 bitA = '0000000'
 
 
