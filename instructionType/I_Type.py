@@ -1,5 +1,5 @@
 from Decimal_binary import decimal_to_binary
-from label import label
+from instructionType.labelArray import label
 
 
 def i_type(inst, opcode, path):
@@ -21,7 +21,7 @@ def i_type(inst, opcode, path):
         try:
             offset = decimal_to_binary(int(inst[4]))
         except Exception as e:
-            print("Error: label not found")
+            print("Error: undefined label")
             exit(1)
     bitD = offset[16:32]
     result = bit0+bitA+bitB+bitC+bitD
@@ -59,7 +59,7 @@ def beq(inst,  addr, path):
         try:
             offset = decimal_to_binary(int(inst[4]))
         except Exception as e:
-            print("Error: label not found")
+            print("Error: undefined label")
             exit(1)
     bitD = offset[16:32]
     result = bit0+bitA+bitB+bitC+bitD

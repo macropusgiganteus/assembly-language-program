@@ -43,8 +43,8 @@ return beq 0 5 exit     # if sp = 0 exit
  sw 5 3 stack           # save return to stack              
  jalr 7 6               # return
 exit halt               # exit
-n .fill 8
-r .fill 5
+n .fill 2
+r .fill 1
 pos1 .fill 1
 neg1 .fill -1
 combiAddr .fill combi
@@ -203,7 +203,6 @@ stack .fill 0
  .fill 0
  .fill 0
  .fill 0
-  .fill 0
  .fill 0
  .fill 0
  .fill 0
@@ -242,7 +241,6 @@ stack .fill 0
  .fill 0
  .fill 0
  .fill 0
-  .fill 0
  .fill 0
  .fill 0
  .fill 0
@@ -281,7 +279,6 @@ stack .fill 0
  .fill 0
  .fill 0
  .fill 0
-  .fill 0
  .fill 0
  .fill 0
  .fill 0
@@ -320,7 +317,6 @@ stack .fill 0
  .fill 0
  .fill 0
  .fill 0
-  .fill 0
  .fill 0
  .fill 0
  .fill 0
@@ -359,7 +355,11 @@ stack .fill 0
  .fill 0
  .fill 0
  .fill 0
-  .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
+ .fill 0
  .fill 0
  .fill 0
  .fill 0

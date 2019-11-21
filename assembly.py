@@ -37,6 +37,6 @@ def assembly(inst, addr, path):
     elif instArray[1] == '.fill':
         result = fill(instArray, path)
     else:
-        print('Error: no opcode found')
+        print('Error: opcode not found at pc'+str(addr))
         exit(1)
     return result

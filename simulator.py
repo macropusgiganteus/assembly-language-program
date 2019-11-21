@@ -1,10 +1,20 @@
 from assembly import assembly
 from Decimal_binary import *
 
+input = input("Enter your file name: ")+".txt"
+# assembly instruction
+instruction = []
 
-n = 3
-output = 'program_outputs/output' + str(n)+'.txt'
-outputreg = 'program_outputs/outputreg' + str(n)+'.txt'
+path = 'program_instructions/'+input
+
+n = 2
+
+t = open(path, "r")
+for y in t:
+    instruction.append(y)
+
+output = 'program_outputs/simulator' + str(n)+'.txt'
+outputreg = 'program_outputs/simulator_register' + str(n) + '.txt'
 
 
 def simulator(inst, path):
@@ -95,6 +105,8 @@ def simulator(inst, path):
             print("total of " + str(count) + " instructions executed",
                   file=open(output, "a"))
             print("final state of machine:", file=open(output, "a"))
+            printState(mem, reg, pc)
+            print('completed')
             exit(0)
     printState(mem, reg, pc-1)
 
@@ -148,3 +160,7 @@ def printState(memory, register, pc):
         print("                 reg[ "+str(regNum) +
               " ] " + str(j), file=open(outputreg, "a"))
         regNum += 1
+
+
+# main
+simulator(instruction, path)

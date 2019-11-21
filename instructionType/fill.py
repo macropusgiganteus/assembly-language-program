@@ -1,15 +1,6 @@
 from Decimal_binary import decimal_to_binary
-from label import label
+from instructionType.labelArray import label
 bitA = '0000000'
-
-
-def label(path):
-    labelAddr = []
-    f = open(path, "r")
-    for x in f:
-        y = x.rstrip().split(' ')
-        labelAddr.append(y[0])
-    return labelAddr
 
 
 def fill(inst, path):

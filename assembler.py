@@ -16,11 +16,10 @@ for y in t:
 def assembler(instructions, pathF):
     output = 'assembler' + '.txt'
     Addr = 0
-    instArray = []
     for x in instructions:
-        instArray = x.rstrip().split(' ')
-        print(assembly(instArray, Addr, pathF), file=open(output, "a"))
+        print(assembly(x, Addr, pathF), file=open(output, "a"))
         Addr += 1
+    print('completed!')
     exit(0)
 
 
