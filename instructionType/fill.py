@@ -1,10 +1,10 @@
 from Decimal_binary import decimal_to_binary
-from instructionType.labelArray import label
+
 bitA = '0000000'
 
 
-def fill(inst, path):
-    labelAddr = label(path)
+def fill(inst, label):
+    labelAddr = label
     bitB = '0'
     # if .fill uses symbolic address
     if labelAddr.__contains__(inst[2]):

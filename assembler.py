@@ -1,5 +1,5 @@
 from assembly import *
-
+from instructionType.labelArray import label
 
 input = input("Enter your file name: ")+".txt"
 
@@ -14,10 +14,11 @@ for y in t:
 
 
 def assembler(instructions, pathF):
+    labelArray = label(pathF)
     output = 'program_outputs/assembler_' + input + '.txt'
     Addr = 0
     for x in instructions:
-        print(assembly(x, Addr, pathF), file=open(output, "a"))
+        print(assembly(x, Addr, labelArray), file=open(output, "a"))
         Addr += 1
     print('completed!')
     exit(0)

@@ -1,9 +1,8 @@
 from Decimal_binary import decimal_to_binary
-from instructionType.labelArray import label
 
 
-def i_type(inst, opcode, path):
-    labelAddr = label(path)
+def i_type(inst, opcode, label):
+    labelAddr = label
     bitA = opcode  # opcode 24:22
     bitB = ''  # rs 21:19
     bitC = ''  # rt 18:16
@@ -28,16 +27,16 @@ def i_type(inst, opcode, path):
     return result
 
 
-def lw(inst, path):
-    return i_type(inst, '010', path)
+def lw(inst, label):
+    return i_type(inst, '010', label)
 
 
-def sw(inst, path):
-    return i_type(inst, '011', path)
+def sw(inst, label):
+    return i_type(inst, '011', label)
 
 
-def beq(inst,  addr, path):
-    labelAddr = label(path)
+def beq(inst,  addr, label):
+    labelAddr = label
     opcode = '100'
     bitA = opcode  # opcode 24:22
     bitB = ''  # rs 21:19

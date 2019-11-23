@@ -7,8 +7,7 @@ from Decimal_binary import binary_to_decimal
 
 
 # core function
-def assembly(inst, addr, path):
-
+def assembly(inst, addr, labelArray):
     instArray = inst.rstrip().split(' ')
     result = ''
     # R_Type
@@ -19,11 +18,11 @@ def assembly(inst, addr, path):
 
     # I_Type
     elif instArray[1] == 'lw':
-        result = lw(instArray, path)
+        result = lw(instArray, labelArray)
     elif instArray[1] == 'sw':
-        result = sw(instArray, path)
+        result = sw(instArray, labelArray)
     elif instArray[1] == 'beq':
-        result = beq(instArray, addr, path)
+        result = beq(instArray, addr, labelArray)
 
     # J_Type
     elif instArray[1] == 'jalr':
@@ -35,7 +34,7 @@ def assembly(inst, addr, path):
     elif instArray[1] == 'noop':
         result = noop(instArray)
     elif instArray[1] == '.fill':
-        result = fill(instArray, path)
+        result = fill(instArray, labelArray)
     else:
         print('Error: opcode not found at pc'+str(addr))
         exit(1)

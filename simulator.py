@@ -1,5 +1,6 @@
 from assembly import assembly
 from Decimal_binary import *
+from instructionType.labelArray import label
 
 input = input("Enter your file name: ")+".txt"
 # assembly instruction
@@ -12,13 +13,13 @@ t = open(path, "r")
 for y in t:
     instruction.append(y)
 
-output = 'program_outputs/simulator_' + input +'.txt'
+output = 'program_outputs/simulator_' + input + '.txt'
 outputreg = 'program_outputs/simulator_register_' + input + '.txt'
 
 
 def simulator(inst, path):
     print("Example Run of Simulator", file=open(output, "a"))
-
+    labelArray = label(path)
     # print instruction
     a = 0
     mem = []
@@ -30,7 +31,7 @@ def simulator(inst, path):
     halt = 0
     count = 0
     for x in inst:
-        mem.append(assembly(x, a, path))
+        mem.append(assembly(x, a, labelArray))
         a += 1
     a = 0
     # print simulator
@@ -145,7 +146,7 @@ def printState(memory, register, pc):
     print("        memory:", file=open(output, "a"))
     for i in memory:
         print(
-                "                 mem[ "+str(indexaddr)+" ] " + str(binary_to_decimal(i)), file=open(output, "a"))
+            "                 mem[ "+str(indexaddr)+" ] " + str(binary_to_decimal(i)), file=open(output, "a"))
         indexaddr += 1
     print("        registors:", file=open(output, "a"))
     for j in register:
