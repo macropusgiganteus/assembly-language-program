@@ -1,8 +1,16 @@
-def halt(inst):
+# bit 31:25
+bitA = '0000000'
+# bit 24:22
+bitB = ''
+# bit 21:0
+bitC = '0000000000000000000000'
 
-    return 'halt'
+
+def halt(inst):
+    bitB = '110'
+    return bitA+bitB+bitC
 
 
 def noop(inst):
-
-    return 'noop'
+    bitB = '111'
+    return bitA+bitB+bitC
